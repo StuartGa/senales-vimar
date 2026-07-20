@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy:pages": "NEXT_PUBLIC_BASE_PATH=/senales-vimar NEXT_PUBLIC_SITE_URL=https://stuartga.github.io/senales-vimar npm run build && touch out/.nojekyll && npx gh-pages -d out -m \"Deploy site to GitHub Pages\""
   },
   "dependencies": {
     "clsx": "^2.1.1",
