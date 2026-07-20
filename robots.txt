@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://stuartga.github.io/senales-vimar
+Sitemap: https://stuartga.github.io/senales-vimar/sitemap.xml
