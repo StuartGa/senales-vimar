@@ -1,0 +1,328 @@
+@import "tailwindcss";
+
+:root {
+  --brand: #2f7d32;
+  --brand-strong: #246628;
+  --brand-soft: #e7f3e8;
+  --ink: #141a16;
+  --ink-muted: #4a554e;
+  --surface: #eef2ef;
+  --surface-elevated: #f7faf7;
+  --line: #d5ddd7;
+  --danger: #b42318;
+  --hero-overlay: linear-gradient(
+    180deg,
+    rgba(10, 16, 12, 0.58) 0%,
+    rgba(10, 16, 12, 0.42) 42%,
+    rgba(10, 16, 12, 0.68) 100%
+  );
+  --font-display: var(--font-archivo), "Arial Narrow", sans-serif;
+  --font-body: var(--font-source-sans), "Segoe UI", sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow-soft: 0 12px 40px rgba(20, 26, 22, 0.12);
+  --space-section: clamp(4rem, 8vw, 6rem);
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-line: var(--line);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Solo desactiva motion si el SO lo pide Y el sitio no forzó animaciones */
+@media (prefers-reduced-motion: reduce) {
+  html:not(.allow-motion) {
+    scroll-behavior: auto;
+  }
+
+  html:not(.allow-motion) *,
+  html:not(.allow-motion) *::before,
+  html:not(.allow-motion) *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html.reduce-motion {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-elevated);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  background: var(--ink);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.atmosphere {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(47, 125, 50, 0.12), transparent 42%),
+    radial-gradient(circle at 88% 8%, rgba(31, 107, 138, 0.1), transparent 36%),
+    linear-gradient(180deg, #f7faf7 0%, #eef2ef 100%);
+}
+
+.noise {
+  position: relative;
+}
+
+.noise::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.08) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1) translate3d(0, -1.5%, 0);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(-50%, 6px);
+    opacity: 1;
+  }
+}
+
+@keyframes line-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.animate-rise {
+  animation: rise-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade {
+  animation: fade-in 0.9s ease-out both;
+}
+
+.delay-1 {
+  animation-delay: 0.12s;
+}
+
+.delay-2 {
+  animation-delay: 0.24s;
+}
+
+.delay-3 {
+  animation-delay: 0.36s;
+}
+
+.hero-media {
+  animation: ken-burns 18s ease-out both;
+  will-change: transform;
+}
+
+.scroll-cue {
+  animation: bob 2.2s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-up {
+  transform: translateY(28px);
+}
+
+.reveal-left {
+  transform: translateX(-24px);
+}
+
+.reveal-scale {
+  transform: scale(0.96);
+}
+
+.reveal-fade {
+  transform: none;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.interactive-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.interactive-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft);
+}
+
+.accent-bar {
+  transform-origin: top;
+}
+
+.group:hover .accent-bar,
+.reveal.is-visible .accent-bar {
+  animation: line-grow 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes glow-drift {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.04);
+  }
+}
+
+.cta-glow {
+  animation: glow-drift 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not(.allow-motion) .hero-media,
+  html:not(.allow-motion) .scroll-cue,
+  html:not(.allow-motion) .animate-rise,
+  html:not(.allow-motion) .animate-fade,
+  html:not(.allow-motion) .cta-glow {
+    animation: none !important;
+  }
+
+  html:not(.allow-motion) .reveal,
+  html:not(.allow-motion) .reveal-up,
+  html:not(.allow-motion) .reveal-left,
+  html:not(.allow-motion) .reveal-scale,
+  html:not(.allow-motion) .reveal-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  html:not(.allow-motion) .interactive-lift:hover {
+    transform: none;
+  }
+}
+
+html.reduce-motion .hero-media,
+html.reduce-motion .scroll-cue,
+html.reduce-motion .animate-rise,
+html.reduce-motion .animate-fade,
+html.reduce-motion .cta-glow {
+  animation: none !important;
+}
+
+html.reduce-motion .reveal,
+html.reduce-motion .reveal-up,
+html.reduce-motion .reveal-left,
+html.reduce-motion .reveal-scale,
+html.reduce-motion .reveal-fade {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+html.reduce-motion .interactive-lift:hover {
+  transform: none;
+}
