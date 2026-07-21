@@ -1,2 +1,2 @@
-:HL["/senales-vimar/_next/static/chunks/1fzvznrc-zjsz.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"7ytBmKOVoik6Kx82c1UOg"}
+:HL["/senales-vimar/_next/static/chunks/1bii7h9gs45o7.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"-0JLxMo7zEqf5Vom_Na3k"}
